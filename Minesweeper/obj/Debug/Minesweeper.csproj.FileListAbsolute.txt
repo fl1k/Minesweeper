@@ -1,0 +1,11 @@
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe.config
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojAssemblyReference.cache
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Form1.resources
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Properties.Resources.resources
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.cache
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+c:\users\fl1k\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Game.resources
