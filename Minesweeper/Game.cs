@@ -62,25 +62,17 @@ namespace Minesweeper
         {
             int count = 0;
             if (x - 1 >= 0)
-            {
                 if (isAMine(x - 1, y, mineLocations))
                     count++;
-            }
             if (x + 1 < mineFieldGrid.RowCount)
-            {
                 if (isAMine(x + 1, y, mineLocations))
                     count++;
-            }
             if (y - 1 >= 0)
-            {
                 if (isAMine(x, y - 1, mineLocations))
                     count++;
-            }
             if (y + 1 < mineFieldGrid.RowCount)
-            {
                 if (isAMine(x, y + 1, mineLocations))
                     count++;
-            }
             return count;
         }
 
@@ -94,32 +86,17 @@ namespace Minesweeper
             return false;
         }
 
-        private void mineFieldGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private bool isRevealed(int x, int y)
         {
-            squares--;
-            lblSq.Text = $"Remaining squares: {squares}";
-            int x = e.ColumnIndex;
-            int y = e.RowIndex;
-            if (isAMine(x, y, mineLocations))
-            {
-                for (int i = 0; i < mineLocations.GetLength(0); i++)
-                {
-                    mineFieldGrid[mineLocations[i, 0], mineLocations[i, 1]].Style.BackColor = Color.Red;
-                }
-                MessageBox.Show("You've ran into a mine, good luck next time!", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
+            if (mineFieldGrid[x, y].Style.BackColor == Color.Green)
+                return true;
             else
-            {
-                mineFieldGrid[x, y].Value = getMineCountAround(x, y, mineLocations).ToString();
-                mineFieldGrid[x, y].Style.BackColor = Color.Green;
-                WinCheck(squares);
-            }
+                return false;
         }
 
         private void WinCheck(int remainingSquares)
         {
-            if(remainingSquares == 0)
+            if (remainingSquares == 0)
             {
                 for (int i = 0; i < mineLocations.GetLength(0); i++)
                 {
@@ -128,6 +105,54 @@ namespace Minesweeper
                 MessageBox.Show("There are no remaining squares, you've won!", "Congratulations!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
+        }
+
+        private void mineFieldGrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.mineFieldGrid.ClearSelection();
+            int x = e.ColumnIndex;
+            int y = e.RowIndex;
+            if (e.Button == MouseButtons.Right)
+            {
+                mineFieldGrid[x, y].Style.BackColor = Color.Orange;
+            }
+            else
+            {
+                if (isAMine(x, y, mineLocations))
+                {
+                    for (int i = 0; i < mineLocations.GetLength(0); i++)
+                    {
+                        mineFieldGrid[mineLocations[i, 0], mineLocations[i, 1]].Style.BackColor = Color.Red;
+                    }
+                    MessageBox.Show("You've ran into a mine, good luck next time!", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    ShowEmptySquaresAround(x, y);
+                    lblSq.Text = $"Remaining squares: {squares}";
+                    WinCheck(squares);
+                }
+            }
+        }
+
+        private void ShowEmptySquaresAround(int x, int y)
+        {
+            squares--;
+            mineFieldGrid[x, y].Value = getMineCountAround(x, y, mineLocations).ToString();
+            mineFieldGrid[x, y].Style.BackColor = Color.Green;
+            if (x - 1 >= 0)
+                if (!(isAMine(x - 1, y, mineLocations) || isRevealed(x -1,y)))
+                    ShowEmptySquaresAround(x - 1, y);
+            if (x + 1 < mineFieldGrid.RowCount)
+                if (!(isAMine(x + 1, y, mineLocations) || isRevealed(x + 1, y)))
+                    ShowEmptySquaresAround(x + 1, y);
+            if (y - 1 >= 0)
+                if (!(isAMine(x, y - 1, mineLocations) || isRevealed(x, y -1)))
+                    ShowEmptySquaresAround(x, y - 1);
+            if (y + 1 < mineFieldGrid.ColumnCount)
+                if (!(isAMine(x, y + 1, mineLocations) || isRevealed(x, y + 1)))
+                    ShowEmptySquaresAround(x, y + 1);
         }
     }
 }

@@ -54,7 +54,7 @@
             this.NumUpDownGridSize.Size = new System.Drawing.Size(120, 20);
             this.NumUpDownGridSize.TabIndex = 0;
             this.NumUpDownGridSize.Value = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -80,11 +80,16 @@
             // NumUpDownMines
             // 
             this.NumUpDownMines.Location = new System.Drawing.Point(15, 81);
+            this.NumUpDownMines.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
             this.NumUpDownMines.Name = "NumUpDownMines";
             this.NumUpDownMines.Size = new System.Drawing.Size(120, 20);
             this.NumUpDownMines.TabIndex = 3;
             this.NumUpDownMines.Value = new decimal(new int[] {
-            10,
+            150,
             0,
             0,
             0});
